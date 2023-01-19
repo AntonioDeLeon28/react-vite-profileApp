@@ -32,6 +32,8 @@ export const ProfileInfo = () => {
   const [menuItem, setMenuItem] = useState('Profile');
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const filterCurrentUser = users?.users?.filter(data => data.id != currentUser.id);
+
   useEffect(() => {
     if (currentUser === null) {
       navigate('/auth/profiles');
@@ -42,8 +44,8 @@ export const ProfileInfo = () => {
     setAnchorElUser(null);
   };
 
-  const handleChangeCurrentUser = () => {
-    setCurrentUser(null);
+  const handleChangeCurrentUser = (data) => {
+    setCurrentUser(data);
     navigate('/auth/profiles');
   };
 
@@ -73,7 +75,7 @@ export const ProfileInfo = () => {
           <Typography variant="h6" component="div" style={{ color: '#000000' }} sx={{ flexGrow: 1 }} >
 
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt={currentUser?.name} src={currentUser?.profilepicture} sx={{ mr: 2 }} /> <Typography variant='h5' fontFamily='Arial'>{currentUser?.name}</Typography>
+              <Avatar alt={currentUser?.name} src={currentUser?.profilepicture} sx={{ mr: 2 }} /> <Typography variant='h6' fontFamily='Arial'>{currentUser?.name}</Typography>
             </IconButton>
             <Menu
               sx={{ mt: '45px' }}
@@ -99,13 +101,13 @@ export const ProfileInfo = () => {
                   justifyContent="center"
                 >
 
-                  <Typography variant="h6" noWrap component="div" align='center' style={{ width: 300, height: 300 }}>
+                  <Typography variant="h6" noWrap component="div" align='center' style={{ width: 250, height: 225 }}>
 
                     <Typography variant="h6" noWrap component="div" display="flex" justifyContent="center" >
-                      <Avatar alt={currentUser?.name} src={currentUser?.profilepicture} sx={{ minWidth: 200, minHeight: 200 }} />
+                      <Avatar alt={currentUser?.name} src={currentUser?.profilepicture} sx={{ minWidth: 150, minHeight: 150 }} />
                     </Typography>
 
-                    <Typography variant="h5" noWrap component="div" fontFamily='Arial'>
+                    <Typography variant="h6" noWrap component="div" fontFamily='Arial'>
                       {currentUser?.name}
                     </Typography>
 
@@ -119,7 +121,20 @@ export const ProfileInfo = () => {
 
               </MenuItem>
 
-              <MenuItem onClick={() => { handleCloseUserMenu(); handleChangeCurrentUser(); }} >
+              {filterCurrentUser?.map((dir) => {
+                return <>
+
+                  <MenuItem onClick={() => { handleCloseUserMenu(); handleChangeCurrentUser(dir); }} sx={{ py: 0 }} >
+                    <Avatar alt={dir.name} src={dir.profilepicture} sx={{ mr: 1 }} />
+                    <ListItemText key={dir.id} primary={<Typography variant="h6" fontFamily='Arial'>{dir.name}</Typography>} />
+                  </MenuItem>
+
+                  <hr style={{ marginInline: 20 }} />
+
+                </>
+              })}
+
+              <MenuItem onClick={() => { handleCloseUserMenu(); handleChangeCurrentUser(null); }} >
 
                 <Button variant="contained" style={{ backgroundColor: '#D24620' }} >
                   Sign out
@@ -162,7 +177,7 @@ export const ProfileInfo = () => {
                   <ListItemIcon>
                   </ListItemIcon>
 
-                  <ListItemText primary={<Typography variant="h5" fontFamily='Arial'>{text}</Typography>} style={{ color: '#FFFFFF', height: 35 }} sx={{ my: 2 }} />
+                  <ListItemText primary={<Typography variant="h6" fontFamily='Arial'>{text}</Typography>} style={{ color: '#FFFFFF', height: 25 }} sx={{ my: 1 }} />
 
                 </ListItemButton>
               </ListItem>
@@ -187,7 +202,6 @@ export const ProfileInfo = () => {
             : (menuItem === 'Gallery')
               ? <Gallery />
               : <ToDo />
-
       }
 
     </Box >
