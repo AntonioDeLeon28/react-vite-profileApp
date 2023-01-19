@@ -24,11 +24,8 @@ export const SelectProfile = () => {
 
   }, [])
 
-  console.log('Los usuarios: ', users);
-
   const handleProfile = (user) => {
     setCurrentUser(user);
-    console.log('user:', user);
     navigate('/profileInfo');
   }
 
@@ -48,7 +45,7 @@ export const SelectProfile = () => {
 
             <Typography component="div" style={{ backgroundColor: '#BCB9B9' }}>
 
-              <Typography variant="h5" component="div" align="center" fontFamily= 'Arial' >
+              <Typography variant="h5" component="div" align="center" fontFamily='Arial' >
                 Select an account
               </Typography>
 
@@ -69,7 +66,7 @@ export const SelectProfile = () => {
 
                   <ListItemButton>
                     <Avatar alt={dir.name} src={dir.profilepicture} sx={{ mr: 2 }} />
-                    <ListItemText key={dir.id} primary={<Typography variant="h5" fontFamily= 'Arial'>{dir.name}</Typography>} onClick={() => handleProfile(dir)} />
+                    <ListItemText key={dir.id} primary={<Typography variant="h5" fontFamily='Arial'>{dir.name}</Typography>} onClick={() => handleProfile(dir)} />
                   </ListItemButton>
 
                   <hr />
