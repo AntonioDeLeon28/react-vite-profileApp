@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Avatar, List, ListItemAvatar, ListItemButton, ListItemText, ListSubheader } from '@mui/material';
+import { Avatar, Container, List, ListItemAvatar, ListItemButton, ListItemText, ListSubheader } from '@mui/material';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 export const SelectProfile = () => {
@@ -33,13 +33,26 @@ export const SelectProfile = () => {
     <>
 
       <Box
-        sx={{ bgcolor: '#433FBD', py: 5 }}
+        style={{
+          backgroundImage: `url('https://img.freepik.com/vector-premium/diseno-fondo-suave-morado-ondulado_1035-10034.jpg?2')`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '2000px',
+          // backgroundRepeat:'unset',
+          // minWidth:'1500px',
+          // maxWidth:'900px',
+          width: '2000px',
+          height: '1000px',
+        }}
+        sx={{ py: 5 }}
         display="flex"
         alignItems="center"
         justifyContent="center"
+        width=''
+        height=''
+      // className='dflex align-items-center justify-content-center'
       >
 
-        <Card sx={{ minWidth: 600, maxWidth: 900, borderRadius: '26px' }} >
+        <Card sx={{ minWidth: '500px', maxWidth: '500px', borderRadius: '26px' }} >
 
           <CardContent style={{ backgroundColor: '#BCB9B9' }}>
 
@@ -64,7 +77,7 @@ export const SelectProfile = () => {
               {users?.users?.map((dir) => {
                 return <>
 
-                  <ListItemButton>
+                  <ListItemButton sx={{ py: 1 }} >
                     <Avatar alt={dir.name} src={dir.profilepicture} sx={{ mr: 2 }} />
                     <ListItemText key={dir.id} primary={<Typography variant="h6" fontFamily='Arial'>{dir.name}</Typography>} onClick={() => handleProfile(dir)} />
                   </ListItemButton>

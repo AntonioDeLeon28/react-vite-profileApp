@@ -58,7 +58,7 @@ export const ProfileInfo = () => {
   }
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} >
       <CssBaseline />
 
       <AppBar
