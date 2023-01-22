@@ -20,6 +20,8 @@ export const SelectProfile = () => {
 
     if (currentUser != null) {
       navigate('/profileInfo');
+    }else if (currentUser === null) {
+      navigate('/auth/profiles');
     }
 
   }, [])

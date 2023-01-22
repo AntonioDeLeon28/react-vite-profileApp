@@ -40,6 +40,10 @@ export const ProfileInfo = () => {
     }
   }, [])
 
+  useEffect(() => {
+    setMenuItem('Profile');
+  }, [currentUser])
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
