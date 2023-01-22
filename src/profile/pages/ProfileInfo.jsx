@@ -46,6 +46,11 @@ export const ProfileInfo = () => {
 
   const handleChangeCurrentUser = (data) => {
     setCurrentUser(data);
+    // navigate('/auth/profiles');
+  };
+
+  const handleChangeCurrentUserFromMenu = (data) => {
+    setCurrentUser(data);
     navigate('/auth/profiles');
   };
 
@@ -134,7 +139,7 @@ export const ProfileInfo = () => {
                 </>
               })}
 
-              <MenuItem onClick={() => { handleCloseUserMenu(); handleChangeCurrentUser(null); }} >
+              <MenuItem onClick={() => { handleCloseUserMenu(); handleChangeCurrentUserFromMenu(null); }} >
 
                 <Button variant="contained" style={{ backgroundColor: '#D24620' }} >
                   Sign out
